@@ -1,4 +1,4 @@
-# innovedex25
+# The Potatoes 2025
 
 ## Requirements
 
