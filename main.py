@@ -7,16 +7,16 @@ servo1 = board.get_pin('d:2:s')
 servo2 = board.get_pin('d:3:s')
 servo3 = board.get_pin('d:4:s')
 servo4 = board.get_pin('d:5:s')
-button_pin = board.get_pin('d:13:i')  # D13 as digital input
+button_pin = board.get_pin('d:12:i')  # D13 as digital input
 
-def move(servonum, angle):
+def move(servonum, angle, time):
     
     servono = "servo" + servonum
     servono.write(angle)             
-    time.sleep(1)
+    time.sleep(time)
 
 def pos1():
-    move(1, 0)
+    move(1, 0, 2)
     
 
 def wait_for_button():
