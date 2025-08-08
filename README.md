@@ -2,7 +2,7 @@
 
 ## Requirements
 
-- Python 3.x
+- Python 3.13.5
 - OpenCV
 
 Install dependencies using:
