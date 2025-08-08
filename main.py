@@ -52,7 +52,7 @@ def movespeed(servonum, current_angle, target_angle, duration):
 
 def setuppos(): # setup at a safe known angle --> normally once initialized it moves to 0
     move(1, 90, 0.1)
-    move(2, 166, 0.1)
+    move(2, 159, 0.1)
     move(3, 37, 0.1)
     move(4, 30, 0.1)
 
@@ -63,9 +63,9 @@ def pickup1(): # leftmost donut position
     move(4, 30, 0.2) #open gripper
     movespeed(1, 90, 180, 1.5) #turn to leftmost
     move(3, 37, 0.2)
-    movespeed(2, 123, 166, 1) #arm down
+    movespeed(2, 123, 159, 1) #arm down
     move(4, 80, 1) #close gripper
-    movespeed(2, 166, 123, 1) #arm up
+    movespeed(2, 159, 123, 1) #arm up
     movespeed(1, 180, 90, 1.5) #return to middle position
     
 def pickup2(): # topleft donut position
@@ -74,9 +74,9 @@ def pickup2(): # topleft donut position
     move(4, 30, 0.2) #open gripper
     movespeed(1, 90, 135, 1.5) #turn to topleft
     move(3, 37, 0.2)
-    movespeed(2, 123, 166, 1) #arm down
+    movespeed(2, 123, 159, 1) #arm down
     move(4, 80, 1) #close gripper
-    movespeed(2, 166, 123, 1) #arm up
+    movespeed(2, 159, 123, 1) #arm up
     movespeed(1, 135, 90, 1.5) #return to middle position
     
 def pickup3(): # toprightt donut position
@@ -85,9 +85,9 @@ def pickup3(): # toprightt donut position
     move(4, 30, 0.2) #open gripper
     movespeed(1, 90, 48, 1.5) #turn to topright
     move(3, 37, 0.2)
-    movespeed(2, 123, 166, 1) #arm down
+    movespeed(2, 123, 159, 1) #arm down
     move(4, 80, 1) #close gripper
-    movespeed(2, 166, 123, 1) #arm up
+    movespeed(2, 159, 123, 1) #arm up
     movespeed(1, 48, 90, 1.5) #return to middle position
     
     
@@ -99,9 +99,24 @@ def placedown(): # leftmost donut position
     move(4, 30, 1) #open gripper
     movespeed(2, 147, 123, 1) #arm up
     movespeed(1, 0, 90, 1.5) #return to middle position
-    movespeed(2, 123, 166, 1) #arm down
+    movespeed(2, 123, 159, 1) #arm down
     setuppos()
     
+def placedownlast():
+    movespeed(1, 90, 0, 1.5) #turn to rightmost position
+    move(3, 33, 0.2)
+    movespeed(2, 123, 147, 1) #arm down
+    move(4, 30, 1) #open gripper
+    movespeed(2, 147, 159, 0.2) #arm down
+    move(4, 80, 0.5) #close gripper
+    movespeed(1, 0, 95, 0.5) #return to middle position
+    move(4, 30, 0.5) #open gripper
+    movespeed(3, 33, 75, 0.5) #angle outwards
+    movespeed(2, 159, 177, 0.5) #arm down
+    movespeed(3, 75, 95, 0.5) #angle outwards
+
+    setuppos()
+        
 def wait_for_button():
     print("Waiting for button on D12 to be pressed (pyfirmata2, .value)...")
     while True:
@@ -118,12 +133,12 @@ def main():
     
     try:
         wait_for_button()
-        pickup1()
-        placedown()
-        pickup2()
-        placedown()
+        # pickup1()
+        # placedown()
+        # pickup2()
+        # placedown()
         pickup3()
-        placedown()
+        placedownlast()
         # move(2, 90, 2)
         
     except KeyboardInterrupt:
