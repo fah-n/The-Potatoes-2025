@@ -1,7 +1,7 @@
 from pyfirmata2 import Arduino, util        
 import time                           
 
-board = Arduino('COM3')
+board = Arduino('COM4')
 print("starting program")
 
 it = util.Iterator(board)
@@ -64,7 +64,7 @@ def pickup1(): # leftmost donut position
     movespeed(1, 90, 180, 1.5) #turn to leftmost
     move(3, 37, 0.2)
     movespeed(2, 120, 166, 1) #arm down
-    move(4, 80, 1) #close gripper
+    move(4, 83, 1) #close gripper
     movespeed(2, 166, 120, 1) #arm up
     movespeed(1, 180, 90, 1.5) #return to middle position
     
@@ -75,7 +75,7 @@ def pickup2(): # topleft donut position
     movespeed(1, 90, 135, 1.5) #turn to topleft
     move(3, 37, 0.2)
     movespeed(2, 120, 166, 1) #arm down
-    move(4, 80, 1) #close gripper
+    move(4, 83, 1) #close gripper
     movespeed(2, 166, 120, 1) #arm up
     movespeed(1, 135, 90, 1.5) #return to middle position
     
@@ -86,14 +86,23 @@ def pickup3(): # toprightt donut position
     movespeed(1, 90, 48, 1.5) #turn to topright
     move(3, 37, 0.2)
     movespeed(2, 120, 166, 1) #arm down
-    move(4, 80, 1) #close gripper
+    move(4, 83, 1) #close gripper
     movespeed(2, 166, 120, 1) #arm up
     movespeed(1, 48, 90, 1.5) #return to middle position
     
+def pickup4(): # toprightt donut position
+    move(2, 120, 1) #arm up
+    movespeed(1, 90, 5, 1.5) #turn to rightmost position
+    move(3, 27, 0.2)
+    movespeed(2, 120, 150, 1) #arm down
+    move(4, 83, 1)#close gripper
+    movespeed(1, 0, 110, 2) #return to middle position
+    move(4, 30, 0.2) #open gripper
+    move(3, 60, 0.2)
     
 def placedown(): # leftmost donut position
 
-    movespeed(1, 90, 0, 1.5) #turn to rightmost position
+    movespeed(1, 90, 2, 1.5) #turn to rightmost position
     move(3, 33, 0.2)
     movespeed(2, 120, 147, 1) #arm down
     move(4, 30, 1) #open gripper
@@ -124,6 +133,7 @@ def main():
         placedown()
         pickup3()
         placedown()
+        pickup4()
         # move(2, 90, 2)
         
     except KeyboardInterrupt:
