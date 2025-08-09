@@ -4,7 +4,7 @@ import cv2
 import numpy as np
 from ultralytics import YOLO                     
 
-board = Arduino('COM4')
+board = Arduino('COM3')
 print("im setting up bro chill")
 
 it = util.Iterator(board)
@@ -115,7 +115,7 @@ def placedownlast():
     movespeed(1, 0, 95, 0.5) #return to middle position
     move(4, 30, 0.5) #open gripper
     movespeed(3, 33, 75, 0.5) #angle outwards
-    movespeed(2, 159, 177, 0.5) #arm down
+    movespeed(2, 159, 170, 0.5) #arm down
     movespeed(3, 75, 95, 0.5) #angle outwards
 
     setuppos()
@@ -145,7 +145,7 @@ def get_color_label(mean_rgb):
 # --------------- Live preview + gating ---------------
 def live_detect_until_three(conf_thresh=0.6, stable_frames_needed=5):
 
-    cap = cv2.VideoCapture(0)
+    cap = cv2.VideoCapture(1)
     cap.set(cv2.CAP_PROP_FRAME_WIDTH, 640)
     cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 360)
 
