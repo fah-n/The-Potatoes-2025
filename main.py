@@ -4,7 +4,7 @@ import cv2
 import numpy as np
 from ultralytics import YOLO                     
 
-board = Arduino('COM3')
+board = Arduino('COM4')
 print("im setting up bro chill")
 
 it = util.Iterator(board)
@@ -54,7 +54,7 @@ def movespeed(servonum, current_angle, target_angle, duration):
 
 
 def setuppos(): # setup at a safe known angle --> normally once initialized it moves to 0
-    move(1, 90, 0.1)
+    move(1, 7, 0.1)
     move(2, 159, 0.1)
     move(3, 37, 0.1)
     move(4, 30, 0.1)
@@ -62,63 +62,74 @@ def setuppos(): # setup at a safe known angle --> normally once initialized it m
 setuppos() #calling it as early as possible
     
 def pickup1(): # leftmost donut position
-    move(2, 123, 1) #arm up
-    move(4, 30, 0.2) #open gripper
-    movespeed(1, 90, 180, 1.5) #turn to leftmost
-    move(3, 37, 0.2)
-    movespeed(2, 123, 159, 1) #arm down
-    move(4, 80, 1) #close gripper
-    movespeed(2, 159, 123, 1) #arm up
-    movespeed(1, 180, 90, 1.5) #return to middle position
+    move(2, 123, 0.1) #arm up
+    move(4, 30, 0.1) #open gripper
+    movespeed(1, 90, 180, 0.1) #turn to leftmost
+    move(3, 37, 0.1)
+    movespeed(2, 123, 159, 0.1) #arm down
+    move(4, 80, 0.1) #close gripper
+    movespeed(2, 159, 123, 0.1) #arm up
+    movespeed(1, 180, 90, 0.1) #return to middle position
+    placedown()
     
 def pickup2(): # topleft donut position
     
-    move(2, 123, 1) #arm up
-    move(4, 30, 0.2) #open gripper
-    movespeed(1, 90, 135, 1.5) #turn to topleft
-    move(3, 37, 0.2)
-    movespeed(2, 123, 159, 1) #arm down
-    move(4, 80, 1) #close gripper
-    movespeed(2, 159, 123, 1) #arm up
-    movespeed(1, 135, 90, 1.5) #return to middle position
+    move(2, 123, 0.1) #arm up
+    move(4, 30, 0.1) #open gripper
+    movespeed(1, 90, 135, 0.1) #turn to topleft
+    move(3, 37, 0.1)
+    movespeed(2, 123, 159, 0.1) #arm down
+    move(4, 80, 0.1) #close gripper
+    movespeed(2, 159, 123, 0.1) #arm up
+    movespeed(1, 135, 90, 0.1) #return to middle position
+    placedown()
     
 def pickup3(): # toprightt donut position
     
-    move(2, 123, 1) #arm up
-    move(4, 30, 0.2) #open gripper
-    movespeed(1, 90, 48, 1.5) #turn to topright
-    move(3, 37, 0.2)
-    movespeed(2, 123, 159, 1) #arm down
-    move(4, 80, 1) #close gripper
-    movespeed(2, 159, 123, 1) #arm up
-    movespeed(1, 48, 90, 1.5) #return to middle position
+    move(2, 123, 0.1) #arm up
+    move(4, 30, 0.1) #open gripper
+    movespeed(1, 90, 45, 0.1) #turn to topright
+    move(3, 37, 0.1)
+    movespeed(2, 123, 159, 0.1) #arm down
+    move(4, 80, 0.1) #close gripper
+    movespeed(2, 159, 123, 0.1) #arm up
+    movespeed(1, 45, 90, 0.1) #return to middle position
+    placedown()
+    
     
     
 def placedown(): # leftmost donut position
 
-    movespeed(1, 90, 0, 1.5) #turn to rightmost position
-    move(3, 33, 0.2)
-    movespeed(2, 123, 147, 1) #arm down
-    move(4, 30, 1) #open gripper
-    movespeed(2, 147, 123, 1) #arm up
-    movespeed(1, 0, 90, 1.5) #return to middle position
-    movespeed(2, 123, 159, 1) #arm down
-    setuppos()
+    # movespeed(1, 45, 90, 1) #return to middle position
+    move(3, 33, 0.1)
+    movespeed(2, 123, 140, 0.1) #arm down
+    move(4, 30, 0.1) #open gripper
+    movespeed(2, 140, 123, 0.1) #arm up
     
-def placedownlast():
-    movespeed(1, 90, 0, 1.5) #turn to rightmost position
-    move(3, 33, 0.2)
-    movespeed(2, 123, 147, 1) #arm down
-    move(4, 30, 1) #open gripper
-    movespeed(2, 147, 159, 0.2) #arm down
-    move(4, 80, 0.5) #close gripper
-    movespeed(1, 0, 95, 0.5) #return to middle position
-    move(4, 30, 0.5) #open gripper
-    movespeed(3, 33, 75, 0.5) #angle outwards
-    movespeed(2, 159, 170, 0.5) #arm down
-    movespeed(3, 75, 95, 0.5) #angle outwards
+def placedownfinal(): # leftmost donut position
+    move(4, 30, 0.1) #open gripper
+    movespeed(2, 123, 159, 0.2) #arm down
+    movespeed(3, 37, 75, 0.2) #angle outwards
+    movespeed(2, 159, 170, 0.2) #arm down
+    movespeed(3, 75, 95, 0.2) #angle outwards
+    movespeed(2, 170, 159, 0.2) #arm down
+    movespeed(3, 95, 75, 0.2) #angle outwards
+    # setuppos()
 
-    setuppos()
+    
+def placedownmiddle():
+    # move(2, 123, 1) #arm up
+    # movespeed(1, 90, 3, 1) #turn to rightmost position
+    # move(3, 33, 0.2)
+    # move(4, 30, 1) #open gripper
+    # movespeed(2, 123, 159, 0.2) #arm down
+    move(4, 80, 0.1) #close gripper
+    move(2, 123, 0.2) #arm up
+    movespeed(1, 0, 90, 0.2) #return to middle position
+    movespeed(2, 123, 165, 0.2) #arm down
+    move(4, 30, 0.1) #open gripper
+
+    # setuppos()
 
     
 def wait_for_button():
@@ -145,7 +156,7 @@ def get_color_label(mean_rgb):
 # --------------- Live preview + gating ---------------
 def live_detect_until_three(conf_thresh=0.6, stable_frames_needed=5):
 
-    cap = cv2.VideoCapture(1)
+    cap = cv2.VideoCapture(0)
     cap.set(cv2.CAP_PROP_FRAME_WIDTH, 640)
     cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 360)
 
@@ -268,26 +279,26 @@ def main():
         # Priority order
         priority = ['r', 'g', 'b']
         count = 0
+        
+        placedownmiddle()
 
         # Loop by priority
         for target_color in priority:
             # Find position of that color in sequence
             pos = color_seq.index(target_color) + 1  # +1 to make it 1-based if needed
             print(f"Running action for {target_color} in position {pos}")
-
+       
             if pos == 1:
                 pickup1()
             elif pos == 2:
                 pickup2()
             elif pos == 3:
                 pickup3()
-            count += 1 # +1 every donut picked up
+            # else:
+            #     placedown()
+        # placedown()
+        placedownfinal() # leftmost donut position
         
-            if count == 3:
-               placedownlast()
-            else:
-                placedown()
-
 
         
         
