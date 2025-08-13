@@ -14,12 +14,9 @@ Install dependencies using:
 ```bash
 pip install opencv-contrib-python
 
-```bash
 pip install pyfirmata2
 
-```bash
 pip install numpy
 
-```bash
 pip install ultralytics
 
