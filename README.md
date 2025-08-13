@@ -9,14 +9,25 @@ This project includes all the files used by team **The Potatoes** in the **Innov
 - NumPy
 - ultralytics
 
-Install dependencies using:
+##Install dependencies using:
 
+Install OpenCV Contrib:
 ```bash
 pip install opencv-contrib-python
+```
 
+Install pyFirmata2:
+```bash
 pip install pyfirmata2
+```
 
+Install NumPy:
+```bash
 pip install numpy
+```
 
+Install Ultralytics:
+```bash
 pip install ultralytics
+```
 
