@@ -9,7 +9,7 @@ This project includes all the files used by team **The Potatoes** in the **Innov
 - NumPy
 - ultralytics
 
-##Install dependencies using:
+## Install dependencies using:
 
 Install OpenCV Contrib:
 ```bash
